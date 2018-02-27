@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+
   def index
     @tasks = Task.all
   end
@@ -21,7 +22,6 @@ class TasksController < ApplicationController
       flash.now[:danger] = 'Task が投稿されませんでした'
       render :new
     end
-
   end
 
   def edit
@@ -52,6 +52,6 @@ class TasksController < ApplicationController
 
   # Strong Parameter
   def task_params
-    params.require(:task).permit(:content, status)
+    params.require(:task).permit(:content, :Status)
   end
 end
