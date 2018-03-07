@@ -3,8 +3,10 @@
     <aside class="col-md-4">
       <%= form_for(@task) do |f| %>
         <div class="form-group">
-          <%= f.text_area :content, class: 'form-control', rows: 5 %>
-          <%= f.text_area :status, class: 'form-control', rows: 5 %>
+        <%= f.label :content, 'タスク' %>
+        <%= f.text_field :content, class: 'form-control' %>
+        <%= f.label :status, 'ステータス' %>
+        <%= f.text_field :status, class: 'form-control' %>
         </div>
         <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <% end %>
