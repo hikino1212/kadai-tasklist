@@ -4,6 +4,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = current_user.tasks.page(params[:page])
+    @task = Task.find(params[:id])
   end
 
   def show
