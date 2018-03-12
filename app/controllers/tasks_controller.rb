@@ -54,8 +54,6 @@ class TasksController < ApplicationController
     unless @task
       redirect_to root_url
     end
-    @user = User.find(params[:id])
-    redirect_to root_url if @user != current_user
   end
 
 end
