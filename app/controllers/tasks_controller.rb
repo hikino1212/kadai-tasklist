@@ -27,6 +27,17 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    @task = current_user.tasks.build(task_params)
+    if @task.update(task_params)
+      flash[:success] = 'Task は正常に更新されました'
+      redirect_to @task
+    else
+      flash.now[:danger] = 'Task は更新されませんでした'
+      render :edit
+    end
+  end
+  
   def destroy
     @task.destroy
     flash[:success] = 'メッセージを削除しました。'
@@ -43,6 +54,8 @@ class TasksController < ApplicationController
     unless @task
       redirect_to root_url
     end
+    @user = User.find(params[:id])
+    redirect_to root_url if @user != current_user
   end
 
 end
