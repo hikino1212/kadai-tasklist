@@ -7,7 +7,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tasks = @user.tasks.order('created_at DESC').page(params[:page])
+    # 現在は、指定された id の user のタスクを一律、取得してしまっている
+    if current_user == User.find(params[:id])
+      @tasks = @user.tasks.order('created_at DESC').page(params[:page])
+    else
+      # 本人じゃない /users/:id を指定した場合は、タスクを強制的に0件にする
+      @tasks = []
+    end
     counts(@user)
   end
 
